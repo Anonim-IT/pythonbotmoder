@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: discord_bot
+    environment:
+      DISCORD_TOKEN: ${DISCORD_TOKEN}  # Используем формат ключ-значение для среды
+    volumes:
+      - .:/app:ro  # Монтируем текущую директорию в контейнер в режиме только для чтения
+    restart: unless-stopped
+    ports:
+      - "8080:8080"  # Порт для взаимодействия, если потребуется
